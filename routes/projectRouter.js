@@ -36,14 +36,15 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    try {
-        const [id] = await db('projects').insert(req.body)
-        const project = await db('projects').where({id}).first()
-        res.status(201).json(project)
-    } catch(error) {
-        console.log(error)
-        res.status(500).json({ error: "There was an error"})
-    }
+        try {
+            const [id] = await db('projects').insert(req.body)
+            const project = await db('projects').where({id}).first()
+            res.status(201).json(project)
+        } catch(error) {
+            console.log(error)
+            res.status(500).json({ error: "There was an error" })
+        }
 })
+
 
 module.exports = router
